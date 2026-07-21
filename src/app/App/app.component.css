@@ -1,0 +1,23 @@
+.app {
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.loading {
+  opacity: 0.7;
+  padding: 1rem;
+  border: 1px;
+  border-radius: 12px;
+}
+.again {
+  margin-top: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+
+  /* Добавляем эти строки: */
+  padding: 0.8rem 1.5rem; /* Отступы: сверху/снизу и слева/справа */
+  font-size: 1rem; /* Размер шрифта */
+  background-color: #3b82f6; /* Цвет фона (синий) */
+  color: white; /* Цвет текста */
+  border: none; /* Убираем стандартную рамку */
+  font-weight: bold; /* Жирный шрифт */
+}

@@ -1,0 +1,10 @@
+<section class="result">
+  <h2>Ваш результат:</h2>
+  @if (score() === total()) {
+    <p>Идеально</p>
+  } @else if (score() >= 3) {
+    <p>Пойдет!</p>
+  } @else {
+    <p>Учись дальше</p>
+  }
+</section>
