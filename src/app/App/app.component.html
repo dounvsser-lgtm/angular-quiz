@@ -1,7 +1,13 @@
 <main class="app">
-  <h1>Квиз</h1>
-
+  <header class="titleHeader">
+    <h1>Квиз</h1>
+    <p class="subtitle">Вопросы по angular</p>
+  </header>
   @if (!finished()) {
+    <div class="progress-meta">
+      <span>Прогресс</span>
+      <span>{{ index() }} / {{ questions.length }}</span>
+    </div>
     <app-question-card
       [question]="questions[index()]"
       [total]="questions.length"

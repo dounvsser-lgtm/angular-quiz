@@ -1,23 +1,53 @@
+:host {
+  display: block;
+  min-width: 100vh;
+}
+
 .app {
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem 3rem;
 }
+
+.titleHeader {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.titleHeader h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.55rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .loading {
-  opacity: 0.7;
+  margin: 0 0 1rem;
   padding: 1rem;
   border: 1px;
-  border-radius: 12px;
+  border-radius: var(--text-mute);
+  color: var(--text-mute);
+  text-align: center;
 }
 .again {
   margin-top: 1rem;
   border-radius: 12px;
   cursor: pointer;
 
-  /* Добавляем эти строки: */
-  padding: 0.8rem 1.5rem; /* Отступы: сверху/снизу и слева/справа */
-  font-size: 1rem; /* Размер шрифта */
-  background-color: #3b82f6; /* Цвет фона (синий) */
-  color: white; /* Цвет текста */
-  border: none; /* Убираем стандартную рамку */
-  font-weight: bold; /* Жирный шрифт */
+  padding: 0.8rem 1.5rem;
+  background-color: #3b82f6;
+  border: none;
+  font-weight: bold;
 }
