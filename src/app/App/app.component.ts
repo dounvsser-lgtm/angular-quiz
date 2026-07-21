@@ -14,6 +14,7 @@ import { QuestionModel } from '../quiz-model';
   imports: [QuestionCardComponent, ResultPanelComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   questions: QuestionModel[] = [
