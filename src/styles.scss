@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@use "styles/variables" as *;
+
+:root {
+  --text: #{$text};
+  --shadow: #{$shadow};
+  --text-muted: #{$text-muted};
+  --card-border: #{$card-border};
+  --card-background: #{$card-background};
+  --radius-sm: #{$radius-sm};
+  --radius-lg: #{$radius-lg};
+  --accent: #{$accent};
+}

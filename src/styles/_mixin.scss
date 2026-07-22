@@ -1,0 +1,14 @@
+@use "./variables" as *;
+
+@mixin primary-button {
+  border: 0;
+  border-radius: $radius-sm;
+  background: linear-gradient(135deg, $accent, #6366f1);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:active {
+    transform: translateY(0);
+  }
+}
