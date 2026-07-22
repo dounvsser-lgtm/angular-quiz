@@ -2,83 +2,35 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
+  OnInit,
   signal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { QuestionCardComponent } from '../QuestionCard/question-card.component';
 import { ResultPanelComponent } from '../ResultPanel/result-panel.component';
 import { QuestionModel } from '../quiz-model';
+import { QuizService } from '../services/quiz.service';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [QuestionCardComponent, ResultPanelComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  questions: QuestionModel[] = [
-    {
-      id: 1,
-      text: `Что делает (click) в Angular?`,
-      options: [
-        `Слушает событие клика`,
-        `Меняет CSS стили`,
-        `Создает новый компонент`,
-        `Устанавливает пакеты`,
-      ],
-      correct: `Слушает событие клика`,
-    },
-    {
-      id: 2,
-      text: `Какой декоратор используется для создания компонента?`,
-      options: [`@Injectable`, `@Component`, `@Directive`, `@Pipe`],
-      correct: `@Component`,
-    },
-    {
-      id: 3,
-      text: `Как объявить сигнал (signal) со значением 0?`,
-      options: [
-        `count = new Signal(0)`,
-        `count: signal = 0`,
-        `count = signal(0)`,
-        `count = createSignal(0)`,
-      ],
-      correct: `count = signal(0)`,
-    },
-    {
-      id: 4,
-      text: `Какая директива используется для условного отображения элементов?`,
-      options: [`*ngFor`, `@if / @else`, `[hidden]`, `*ngSwitch`],
-      correct: `@if / @else`,
-    },
-    {
-      id: 5,
-      text: `Для чего нужен блок @defer?`,
-      options: [
-        `Для отложенной загрузки компонентов`,
-        `Для задержки выполнения функций`,
-        `Для анимации переходов`,
-        `Для обработки ошибок`,
-      ],
-      correct: `Для отложенной загрузки компонентов`,
-    },
-  ];
+export class AppComponent implements OnInit {
+  quiz = inject(QuizService);
 
-  index = signal(0);
-  score = signal(0);
-
-  finished = computed(() => this.index() >= this.questions.length);
-  currentAnswer = computed(() => this.questions[this.index()]);
+  ngOnInit(): void {
+    this.quiz.loadQuestions();
+  }
 
   onAnswer(answer: string): void {
-    if (answer === this.currentAnswer().correct) {
-      this.score.update((value) => value + 1);
-    }
-    this.index.update((value) => value + 1);
+    this.quiz.onAnswer(answer);
   }
 
   restart(): void {
-    this.score.set(0);
-    this.index.set(0);
+    this.quiz.restart();
   }
 }
