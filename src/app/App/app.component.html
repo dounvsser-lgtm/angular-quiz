@@ -1,18 +1,33 @@
 <main class="app">
   <header class="titleHeader">
     <h1>Квиз</h1>
-    <p class="subtitle">Вопросы по angular</p>
+    <p class="subtitle">Главное меню</p>
   </header>
-  @if (!quiz.finished()) {
+
+  @if (quiz.screen() === "menu") {
+    <app-main-menu
+      [quizzes]="quiz.mocks()"
+      (quizSelected)="onSelectQuiz($event)"
+    />
+  } @else if (quiz.screen() === "quiz") {
+    @if (quiz.activeQuiz(); as active) {
+      <p class="quiz-title">{{ active.title }}</p>
+    }
+
     <div class="progress-meta">
       <span>Прогресс</span>
       <span>{{ quiz.index() }} / {{ quiz.total() }}</span>
     </div>
-    <app-question-card
-      [question]="quiz.currentQuestion()"
-      [total]="quiz.questions().length"
-      (answer)="onAnswer($event)"
-    />
+
+    @if (quiz.currentQuestion(); as question) {
+      <app-question-card
+        [question]="quiz.currentQuestion()"
+        [total]="quiz.questions().length"
+        (answer)="onAnswer($event)"
+      />
+    }
+
+    <button type="button" class="back" (click)="quiz.backToMenu()">Меню</button>
   } @else {
     @defer {
       <app-result-panel
@@ -23,6 +38,11 @@
       <p class="loading">Считаем результат</p>
     }
 
-    <button type="button" class="again" (click)="restart()">Повторить</button>
+    <div class="actions">
+      <button type="button" class="again" (click)="restart()">Повторить</button>
+      <button type="button" class="back" (click)="quiz.backToMenu()">
+        Повторить
+      </button>
+    </div>
   }
 </main>

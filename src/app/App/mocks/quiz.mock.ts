@@ -1,49 +1,126 @@
-import type { QuestionModel } from '../../quiz-model';
+import type { QuestionModel, QuizModel } from '../../quiz-model';
 
-export const QUIZ_MOCK_QUESTION: QuestionModel[] = [
+export const ANGULAR_BASICS_QUESTIONS: QuestionModel[] = [
   {
     id: 1,
-    text: `Что делает (click) в Angular?`,
+    text: `Что такое компонент в Angular?`,
     options: [
-      `Слушает событие клика`,
-      `Меняет CSS стили`,
-      `Создает новый компонент`,
-      `Устанавливает пакеты`,
+      `Класс TypeScript с декоратором @Component`,
+      `Простой HTML файл`,
+      `CSS стиль`,
+      `Сервис для работы с API`,
     ],
-    correct: `Слушает событие клика`,
+    correct: `Класс TypeScript с декоратором @Component`,
   },
   {
     id: 2,
-    text: `Какой декоратор используется для создания компонента?`,
-    options: [`@Injectable`, `@Component`, `@Directive`, `@Pipe`],
-    correct: `@Component`,
+    text: `Какой тип биндинга используется для односторонней передачи данных?`,
+    options: [
+      `Интерполяция {{ }} и [property]`,
+      `(event)`,
+      `[(ngModel)]`,
+      `@Input() только`,
+    ],
+    correct: `Интерполяция {{ }} и [property]`,
   },
   {
     id: 3,
-    text: `Как объявить сигнал (signal) со значением 0?`,
+    text: `Для чего используется декоратор @Injectable?`,
     options: [
-      `count = new Signal(0)`,
-      `count: signal = 0`,
-      `count = signal(0)`,
-      `count = createSignal(0)`,
+      `Для создания сервисов`,
+      `Для создания компонентов`,
+      `Для создания директив`,
+      `Для создания пайпов`,
     ],
-    correct: `count = signal(0)`,
+    correct: `Для создания сервисов`,
+  },
+];
+
+// Мок 2: JavaScript Fundamentals
+export const JS_FUNDAMENTALS_QUESTIONS: QuestionModel[] = [
+  {
+    id: 1,
+    text: `Что выведет console.log(typeof null)?`,
+    options: [`"null"`, `"undefined"`, `"object"`, `"number"`],
+    correct: `"object"`,
+  },
+  {
+    id: 2,
+    text: `Какой метод массива не изменяет оригинальный массив?`,
+    options: [`push()`, `map()`, `splice()`, `sort()`],
+    correct: `map()`,
+  },
+  {
+    id: 3,
+    text: `Что такое замыкание (closure)?`,
+    options: [
+      `Функция, имеющая доступ к переменным внешней функции`,
+      `Закрытие браузерного окна`,
+      `Метод закрытия соединения с сервером`,
+      `Блокировка кода от изменений`,
+    ],
+    correct: `Функция, имеющая доступ к переменным внешней функции`,
   },
   {
     id: 4,
-    text: `Какая директива используется для условного отображения элементов?`,
-    options: [`*ngFor`, `@if / @else`, `[hidden]`, `*ngSwitch`],
-    correct: `@if / @else`,
+    text: `Чему равно 0.1 + 0.2 === 0.3?`,
+    options: [`true`, `false`, `undefined`, `NaN`],
+    correct: `false`,
+  },
+];
+
+// Мок 3: CSS & Styling
+export const CSS_STYLING_QUESTIONS: QuestionModel[] = [
+  {
+    id: 1,
+    text: `Какое свойство CSS используется для создания flex-контейнера?`,
+    options: [
+      `display: flex`,
+      `position: flex`,
+      `flex: container`,
+      `layout: flex`,
+    ],
+    correct: `display: flex`,
   },
   {
-    id: 5,
-    text: `Для чего нужен блок @defer?`,
+    id: 2,
+    text: `Что делает свойство z-index?`,
     options: [
-      `Для отложенной загрузки компонентов`,
-      `Для задержки выполнения функций`,
-      `Для анимации переходов`,
-      `Для обработки ошибок`,
+      `Управляет порядком наложения элементов`,
+      `Задает размер шрифта`,
+      `Устанавливает прозрачность`,
+      `Определяет отступы`,
     ],
-    correct: `Для отложенной загрузки компонентов`,
+    correct: `Управляет порядком наложения элементов`,
+  },
+  {
+    id: 3,
+    text: `Какая единица измерения относительна размера шрифта родительского элемента?`,
+    options: [`px`, `em`, `rem`, `%`],
+    correct: `em`,
+  },
+];
+
+export const QUIZ_MOCKS: QuizModel[] = [
+  {
+    id: 'angular-basics',
+    title: 'Основы Angular',
+    description: 'Проверьте свои знания базовых концепций Angular',
+    icon: '🅰️',
+    questions: ANGULAR_BASICS_QUESTIONS,
+  },
+  {
+    id: 'js-fundamentals',
+    title: 'JavaScript Основы',
+    description: 'Тест на знание фундаментальных концепций JavaScript',
+    icon: '🟨',
+    questions: JS_FUNDAMENTALS_QUESTIONS,
+  },
+  {
+    id: 'css-styling',
+    title: 'CSS и Стилизация',
+    description: 'Вопросы о CSS, верстке и стилизации',
+    icon: '🎨',
+    questions: CSS_STYLING_QUESTIONS,
   },
 ];

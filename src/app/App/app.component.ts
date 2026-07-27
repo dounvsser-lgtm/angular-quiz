@@ -11,19 +11,20 @@ import { QuestionCardComponent } from '../QuestionCard/question-card.component';
 import { ResultPanelComponent } from '../ResultPanel/result-panel.component';
 import { QuestionModel } from '../quiz-model';
 import { QuizService } from '../services/quiz.service';
+import { MainMenuComponent } from './MainMenu/main-menu.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [QuestionCardComponent, ResultPanelComponent],
+  imports: [QuestionCardComponent, ResultPanelComponent, MainMenuComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   quiz = inject(QuizService);
 
-  ngOnInit(): void {
-    this.quiz.loadQuestions();
+  onSelectQuiz(quizId: string): void {
+    this.quiz.selectQuiz(quizId);
   }
 
   onAnswer(answer: string): void {

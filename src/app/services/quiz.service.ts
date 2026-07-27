@@ -1,9 +1,14 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { QUIZ_MOCK_QUESTION } from '../App/mocks/quiz.mock';
-import type { QuestionModel } from '../quiz-model';
+import { QUIZ_MOCKS } from '../App/mocks/quiz.mock';
+import type { AppScreen, QuestionModel, QuizModel } from '../quiz-model';
 
 @Injectable({ providedIn: 'root' })
 export class QuizService {
+  mocks = signal<QuizModel[]>(QUIZ_MOCKS);
+
+  screen = signal<AppScreen>('menu');
+  activeQuiz = signal<QuizModel | null>(null);
+
   questions = signal<QuestionModel[]>([]);
   index = signal(0);
   score = signal(0);
@@ -13,15 +18,21 @@ export class QuizService {
   currentQuestion = computed(() => this.questions()[this.index()]);
   total = computed(() => this.questions().length);
 
-  loadQuestions(): void {
-    this.loading.set(true);
+  selectQuiz(quizId: string): void {
+    const quiz = this.mocks().find((q) => q.id == quizId);
+    if (!quiz) {
+      return;
+    }
+
+    this.activeQuiz.set(quiz);
+    this.screen.set('quiz');
+    this.index.set(0);
+    this.score.set(0);
 
     setTimeout(() => {
-      this.questions.set(QUIZ_MOCK_QUESTION);
-      this.index.set(0);
-      this.score.set(0);
+      this.questions.set(quiz.questions);
       this.loading.set(false);
-    }, 300);
+    }, 200);
   }
 
   onAnswer(answer: string): void {
@@ -34,5 +45,13 @@ export class QuizService {
   restart(): void {
     this.score.set(0);
     this.index.set(0);
+  }
+
+  backToMenu(): void {
+    this.activeQuiz.set(null);
+    this.questions.set([]);
+    this.score.set(0);
+    this.index.set(0);
+    this.screen.set('menu');
   }
 }

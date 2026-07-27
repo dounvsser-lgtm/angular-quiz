@@ -1,0 +1,13 @@
+<section class="menu">
+  <h2>Выбери квиз</h2>
+
+  <div class="cards">
+    @for (quiz of quizzes(); track quiz.id) {
+      <button type="button" class="card" (click)="quizSelected.emit(quiz.id)">
+        <span class="icon">{{ quiz.icon }}</span>
+        <span class="title">{{ quiz.title }}</span>
+        <span class="description">{{ quiz.description }}</span>
+      </button>
+    }
+  </div>
+</section>
