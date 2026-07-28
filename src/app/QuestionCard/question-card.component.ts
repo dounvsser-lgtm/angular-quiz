@@ -7,6 +7,7 @@ import { QuestionModel } from '../quiz-model';
   styleUrl: `./question-card.component.css`,
 })
 export class QuestionCardComponent {
+  readonly currentIndexQuestion = input.required<number>();
   readonly question = input.required<QuestionModel>();
   readonly total = input<number>();
   readonly answer = output<string>();
