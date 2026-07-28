@@ -1,14 +1,19 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, signal, inject } from '@angular/core';
 import { QUIZ_MOCKS } from '../App/mocks/quiz.mock';
 import type {
   AppScreen,
   QuestionModel,
   QuizModel,
 } from '../App/Models/quiz-model';
+import { UserService } from './user.service';
+import { QuizHistoryService } from './quiz-history.service';
 
 @Injectable({ providedIn: 'root' })
 export class QuizService {
   mocks = signal<QuizModel[]>(QUIZ_MOCKS);
+
+  userService = inject(UserService);
+  quizHistoryService = inject(QuizHistoryService);
 
   screen = signal<AppScreen>('menu');
   activeQuiz = signal<QuizModel | null>(null);
@@ -62,5 +67,24 @@ export class QuizService {
     this.score.set(0);
     this.index.set(0);
     this.screen.set('menu');
+  }
+
+  saveAttempt(): void {
+    const user = this.userService.currentUser();
+    const quiz = this.activeQuiz();
+
+    if (!user || !quiz) {
+      return;
+    }
+
+    this.quizHistoryService.addAttempt({
+      id: crypto.randomUUID(),
+      userId: user.id,
+      userName: user.name,
+      quizId: quiz.id,
+      quizTitle: quiz.title,
+      score: this.score(),
+      total: this.total(),
+    });
   }
 }

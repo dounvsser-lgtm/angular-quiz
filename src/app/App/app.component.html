@@ -2,8 +2,16 @@
   <header class="titleHeader">
     <h1>Квиз</h1>
     <p class="subtitle">Главное меню</p>
+    @if (user.currentUser(); as current) {
+      <p class="user">{{ current.name }} {{ current.role }}</p>
+    }
   </header>
 
+  @if (user.currentUser(); as currentUser) {
+    @if (permission.canViewHistory(currentUser)) {
+      <app-quiz-history-component [attempts]="quizHistory.history() ?? []" />
+    }
+  }
   @if (quiz.screen() === "menu") {
     <app-main-menu
       [quizzes]="quiz.mocks()"

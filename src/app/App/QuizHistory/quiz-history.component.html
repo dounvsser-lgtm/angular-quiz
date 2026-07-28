@@ -1,0 +1,19 @@
+<section class="history">
+  <h2>История квизов</h2>
+
+  @if (attempts().length === 0) {
+    <p class="empty">Нет пройденных квизов</p>
+  } @else {
+    <ul>
+      @for (attempt of attempts(); track attempt.id) {
+        <li>
+          <div class="row">
+            <p>{{ attempt.quizTitle }}</p>
+            <p>{{ attempt.userName }}</p>
+            <span>{{ attempt.score }} / {{ attempt.total }}</span>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>
