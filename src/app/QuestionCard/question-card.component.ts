@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { QuestionModel } from '../quiz-model';
+import { QuestionModel } from '../App/Models/quiz-model';
 
 @Component({
   selector: 'app-question-card',

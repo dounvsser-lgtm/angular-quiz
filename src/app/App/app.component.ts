@@ -9,7 +9,7 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { QuestionCardComponent } from '../QuestionCard/question-card.component';
 import { ResultPanelComponent } from '../ResultPanel/result-panel.component';
-import { QuestionModel } from '../quiz-model';
+import { QuestionModel } from '../App/Models/quiz-model';
 import { QuizService } from '../services/quiz.service';
 import { MainMenuComponent } from './MainMenu/main-menu.component';
 

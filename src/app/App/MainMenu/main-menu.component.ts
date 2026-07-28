@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import type { QuizModel } from '../../quiz-model';
+import type { QuizModel } from '../../App/Models/quiz-model';
 
 @Component({
   selector: `app-main-menu`,

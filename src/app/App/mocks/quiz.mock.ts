@@ -1,4 +1,4 @@
-import type { QuestionModel, QuizModel } from '../../quiz-model';
+import type { QuestionModel, QuizModel } from '../../App/Models/quiz-model';
 
 export const ANGULAR_BASICS_QUESTIONS: QuestionModel[] = [
   {

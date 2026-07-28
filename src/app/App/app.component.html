@@ -28,7 +28,7 @@
     }
 
     <button type="button" class="back" (click)="quiz.backToMenu()">Меню</button>
-  } @else {
+  } @else if (quiz.screen() === "result") {
     @defer {
       <app-result-panel
         [total]="quiz.questions().length"
@@ -41,7 +41,7 @@
     <div class="actions">
       <button type="button" class="again" (click)="restart()">Повторить</button>
       <button type="button" class="back" (click)="quiz.backToMenu()">
-        Повторить
+        Меню
       </button>
     </div>
   }

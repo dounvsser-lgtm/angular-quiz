@@ -1,6 +1,10 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { QUIZ_MOCKS } from '../App/mocks/quiz.mock';
-import type { AppScreen, QuestionModel, QuizModel } from '../quiz-model';
+import type {
+  AppScreen,
+  QuestionModel,
+  QuizModel,
+} from '../App/Models/quiz-model';
 
 @Injectable({ providedIn: 'root' })
 export class QuizService {
@@ -40,11 +44,16 @@ export class QuizService {
       this.score.update((value) => value + 1);
     }
     this.index.update((value) => value + 1);
+
+    if (this.finished()) {
+      this.screen.set(`result`);
+    }
   }
 
   restart(): void {
     this.score.set(0);
     this.index.set(0);
+    this.screen.set(`quiz`);
   }
 
   backToMenu(): void {
