@@ -1,9 +1,12 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
 .result {
-  background: #14532d;
+  background: #4cabe6;
   border: 1px;
   padding: 1.75rem 1.5rem;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
+  border-radius: $radius-lg;
+  box-shadow: $shadow;
   text-align: center;
 }
 

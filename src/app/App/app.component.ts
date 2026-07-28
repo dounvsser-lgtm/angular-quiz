@@ -13,7 +13,7 @@ import { QuestionModel } from '../quiz-model';
   selector: 'app-root',
   imports: [QuestionCardComponent, ResultPanelComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   questions: QuestionModel[] = [

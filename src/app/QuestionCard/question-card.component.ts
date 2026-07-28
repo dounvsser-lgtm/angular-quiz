@@ -4,7 +4,7 @@ import { QuestionModel } from '../quiz-model';
 @Component({
   selector: 'app-question-card',
   templateUrl: `./question-card.component.html`,
-  styleUrl: `./question-card.component.css`,
+  styleUrl: `./question-card.component.scss`,
 })
 export class QuestionCardComponent {
   readonly currentIndexQuestion = input.required<number>();

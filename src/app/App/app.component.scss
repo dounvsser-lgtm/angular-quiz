@@ -1,3 +1,6 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixin" as *;
+
 :host {
   display: block;
   min-width: 100vh;
@@ -11,26 +14,26 @@
 .titleHeader {
   margin-bottom: 1.5rem;
   text-align: center;
-}
 
-.titleHeader h1 {
-  margin: 0 0 0.4rem;
-  font-size: clamp(2rem, 5vw, 2.6rem);
-  line-height: 1.1;
+  h1 {
+    margin: 0 0 0.4rem;
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    line-height: 1.1;
+  }
 }
 
 .subtitle {
   margin: 0;
-  color: var(--text-muted);
+  color: $text-muted;
   font-size: 1rem;
 }
 
 .progress-meta {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 0.55rem;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  color: $text-muted;
+  font-size: 1.3rem;
 }
 
 .loading {
@@ -38,9 +41,10 @@
   padding: 1rem;
   border: 1px;
   border-radius: var(1rem);
-  color: var(--text-mute);
+  color: $text-muted;
   text-align: center;
 }
+
 .again {
   margin-top: 1rem;
   border-radius: 12px;
