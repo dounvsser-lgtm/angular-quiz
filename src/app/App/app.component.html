@@ -4,12 +4,14 @@
     <p class="subtitle">Вопросы по angular</p>
   </header>
   @if (!finished()) {
+    @let newIndex = index();
     <div class="progress-meta">
       <span>Прогресс</span>
-      <span>{{ index() }} / {{ questions.length }}</span>
+      <span>{{ newIndex }} / {{ questions.length }}</span>
     </div>
     <app-question-card
-      [question]="questions[index()]"
+      [currentIndexQuestion]="newIndex + 1"
+      [question]="questions[newIndex]"
       [total]="questions.length"
       (answer)="onAnswer($event)"
     />
