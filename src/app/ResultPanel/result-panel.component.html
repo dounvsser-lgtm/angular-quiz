@@ -1,10 +1,13 @@
 <section class="result">
   <h2>Ваш результат:</h2>
+  <p class="score">
+    Правильных ответов: <strong>{{ score() }}</strong> из {{ total() }}
+  </p>
   @if (score() === total()) {
-    <p>Идеально</p>
+    <p class="message success">Идеально</p>
   } @else if (score() >= 3) {
-    <p>Пойдет!</p>
+    <p class="message ok">Пойдет!</p>
   } @else {
-    <p>Учись дальше</p>
+    <p class="message bad">Учись дальше</p>
   }
 </section>

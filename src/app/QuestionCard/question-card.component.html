@@ -1,11 +1,14 @@
-<p class="num">Вопрос под номером {{ total() }}</p>
-@let newQuestion = question();
+<section class="card">
+  <p class="num">Вопрос под номером {{ currentIndexQuestion() }}</p>
+  @let newQuestion = question();
 
-<h2>{{ newQuestion?.text }}</h2>
-<div class="options">
-  @for (option of newQuestion.options; track option) {
-    <button type="button" (click)="answer.emit(option)">
-      {{ option }}
-    </button>
-  }
-</div>
+  <h2>{{ newQuestion?.text }}</h2>
+  <div class="options">
+    @for (option of newQuestion.options; track option) {
+      <button type="button" class="option" (click)="answer.emit(option)">
+        <span class="option-marker"></span>
+        <span class="option-text">{{ option }}</span>
+      </button>
+    }
+  </div>
+</section>

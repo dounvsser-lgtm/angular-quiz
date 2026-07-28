@@ -1,5 +1,41 @@
 .result {
   background: #14532d;
   border: 1px;
-  padding: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.8rem;
+}
+
+.score {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  color: #bbf7d0;
+}
+
+.score strong {
+  color: #ffffff;
+  font-size: 1.35rem;
+}
+
+.message {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.message.success {
+  color: #86efac;
+}
+
+.message.ok {
+  color: #fde68a;
+}
+
+.message.bad {
+  color: #f10606;
 }
