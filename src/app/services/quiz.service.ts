@@ -25,7 +25,7 @@ export class QuizService {
   }
 
   onAnswer(answer: string): void {
-    if (answer == this.currentQuestion().correct) {
+    if (answer === this.currentQuestion().correct) {
       this.score.update((value) => value + 1);
     }
     this.index.update((value) => value + 1);
