@@ -37,7 +37,7 @@
   margin: 0 0 1rem;
   padding: 1rem;
   border: 1px;
-  border-radius: var(--text-mute);
+  border-radius: var(1rem);
   color: var(--text-mute);
   text-align: center;
 }
