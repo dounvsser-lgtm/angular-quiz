@@ -13,6 +13,7 @@ import { QuestionModel } from '../quiz-model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionCardComponent {
+  readonly currentIndexQuestion = input.required<number>();
   readonly question = input.required<QuestionModel>();
   readonly total = input<number>();
   readonly answer = output<string>();
