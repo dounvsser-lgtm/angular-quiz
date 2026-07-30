@@ -40,7 +40,7 @@
   margin: 0 0 1rem;
   padding: 1rem;
   border: 1px;
-  border-radius: $text-muted;
+  border-radius: var(1rem);
   color: $text-muted;
   text-align: center;
 }
