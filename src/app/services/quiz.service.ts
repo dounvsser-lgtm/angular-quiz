@@ -87,4 +87,8 @@ export class QuizService {
       total: this.total(),
     });
   }
+
+  showHistory(): void {
+    this.screen.set('history');
+  }
 }

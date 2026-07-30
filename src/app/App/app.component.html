@@ -7,26 +7,30 @@
     }
   </header>
 
-  @if (user.currentUser(); as currentUser) {
-    @if (permission.canViewHistory(currentUser)) {
-      <app-quiz-history-component [attempts]="quizHistory.history() ?? []" />
-    }
-  }
   @if (quiz.screen() === "menu") {
     <app-main-menu
       [quizzes]="quiz.mocks()"
       (quizSelected)="onSelectQuiz($event)"
     />
+
+    <div class="history-action">
+      <button type="button" class="btn-history" (click)="quiz.showHistory()">
+        📜 История прохождений
+      </button>
+    </div>
+  } @else if (quiz.screen() === "history") {
+    <app-quiz-history
+      [attempts]="quizHistory.history() ?? []"
+      (backToMenu)="quiz.backToMenu()"
+    />
   } @else if (quiz.screen() === "quiz") {
     @if (quiz.activeQuiz(); as active) {
       <p class="quiz-title">{{ active.title }}</p>
     }
-
     <div class="progress-meta">
       <span>Прогресс</span>
       <span>{{ quiz.index() }} / {{ quiz.total() }}</span>
     </div>
-
     @if (quiz.currentQuestion(); as question) {
       <app-question-card
         [question]="quiz.currentQuestion()"
@@ -34,7 +38,6 @@
         (answer)="onAnswer($event)"
       />
     }
-
     <button type="button" class="back" (click)="quiz.backToMenu()">Меню</button>
   } @else if (quiz.screen() === "result") {
     @defer {
@@ -45,7 +48,6 @@
     } @placeholder {
       <p class="loading">Считаем результат</p>
     }
-
     <div class="actions">
       <button type="button" class="again" (click)="restart()">Повторить</button>
       <button type="button" class="back" (click)="quiz.backToMenu()">

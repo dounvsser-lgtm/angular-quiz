@@ -13,4 +13,4 @@ export interface QuizModel {
   questions: QuestionModel[];
 }
 
-export type AppScreen = 'menu' | 'quiz' | 'result';
+export type AppScreen = 'menu' | 'quiz' | 'result' | 'history';
