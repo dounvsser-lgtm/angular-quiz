@@ -3,21 +3,22 @@
     <h1>Квиз</h1>
     <p class="subtitle">Вопросы по angular</p>
   </header>
-  @if (!finished()) {
-    @let newIndex = index();
+  @if (!quiz.finished()) {
     <div class="progress-meta">
       <span>Прогресс</span>
-      <span>{{ newIndex }} / {{ questions.length }}</span>
+      <span>{{ quiz.index() }} / {{ quiz.total() }}</span>
     </div>
     <app-question-card
-      [currentIndexQuestion]="newIndex + 1"
-      [question]="questions[newIndex]"
-      [total]="questions.length"
+      [question]="quiz.currentQuestion()"
+      [total]="quiz.questions().length"
       (answer)="onAnswer($event)"
     />
   } @else {
     @defer {
-      <app-result-panel [total]="questions.length" [score]="score()" />
+      <app-result-panel
+        [total]="quiz.questions().length"
+        [score]="quiz.score()"
+      />
     } @placeholder {
       <p class="loading">Считаем результат</p>
     }
