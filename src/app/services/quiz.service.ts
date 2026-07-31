@@ -78,7 +78,6 @@ export class QuizService {
     }
 
     this.quizHistoryService.addAttempt({
-      id: crypto.randomUUID(),
       userId: user.id,
       userName: user.name,
       quizId: quiz.id,

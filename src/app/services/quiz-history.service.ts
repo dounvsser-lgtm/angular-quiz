@@ -3,35 +3,58 @@ import { QUIZ_HISTORY_MOCK } from '../App/mocks/quiz-history.mock';
 import type { QuizAttemp } from '../App/Models/quiz-attempt.model';
 import { PermissionsService } from './permissions.service';
 import { UserService } from './user.service';
+import { filter, Observable, tap, map, catchError, of } from 'rxjs';
+import { User } from '../App/Models/users-model';
 
 @Injectable({ providedIn: 'root' })
 export class QuizHistoryService {
   userService = inject(UserService);
   permissionService = inject(PermissionsService);
 
-  allAttempts = signal<QuizAttemp[]>([...QUIZ_HISTORY_MOCK]);
+  allAttempts: QuizAttemp[] = [...QUIZ_HISTORY_MOCK];
 
-  history = computed(() => {
-    const user = this.userService.currentUser();
-    const list = this.allAttempts();
+  getVisibleHistory$(): Observable<QuizAttemp[]> {
+    return this.userService.currentUser$.pipe(
+      filter((user): user is User => user != null),
 
-    if (!user) {
-      return;
-    }
+      tap((user) => console.log('История загружается для', user.name)),
 
-    if (this.permissionService.canViewAllHistory(user)) {
-      return list;
-    } else if (this.permissionService.canViewHistory(user)) {
-      return list.filter((x) => x.userId === user.id);
-    }
-    return [];
-  });
+      map((user) => {
+        if (this.permissionService.canViewAllHistory(user)) {
+          return [...this.allAttempts];
+        }
+        return this.allAttempts.filter((x) => x.userId === user.id);
+      }),
 
-  loadHistory(): void {
-    this.allAttempts.set([...QUIZ_HISTORY_MOCK]);
+      catchError((err) => {
+        console.error('Ошибка', err);
+        return of([]);
+      }),
+    );
   }
-  addAttempt(attempt: QuizAttemp): void {
-    const newAttempt: QuizAttemp = attempt;
-    this.allAttempts.update((list) => [newAttempt, ...list]);
+
+  searchHistory$(query: string, user: User): Observable<QuizAttemp[]> {
+    return of(undefined).pipe(
+      tap(() => console.log('[История] поиск:', query)),
+      map(() => {
+        const base = this.permissionService.canViewAllHistory(user)
+          ? this.allAttempts
+          : this.allAttempts.filter((x) => x.userId === user.id);
+        const q = query.trim().toLocaleLowerCase();
+        return base.filter(
+          (item) =>
+            item.quizTitle.toLocaleLowerCase().includes(q) ||
+            item.userName.toLowerCase().includes(q),
+        );
+      }),
+      catchError(() => of([])),
+    );
+  }
+
+  addAttempt(attempt: Omit<QuizAttemp, 'id'>): void {
+    this.allAttempts = [
+      { ...attempt, id: crypto.randomUUID() },
+      ...this.allAttempts,
+    ];
   }
 }

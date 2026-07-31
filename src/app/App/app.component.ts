@@ -16,6 +16,7 @@ import { UserService } from '../services/user.service';
 import { QuizHistoryService } from '../services/quiz-history.service';
 import { PermissionsService } from '../services/permissions.service';
 import { QuizHistoryComponent } from '../App/QuizHistory/quiz-history.component';
+import { UserSwitchComponent } from './UserSwitch/user-switch.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -24,6 +25,7 @@ import { QuizHistoryComponent } from '../App/QuizHistory/quiz-history.component'
     ResultPanelComponent,
     MainMenuComponent,
     QuizHistoryComponent,
+    UserSwitchComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -36,7 +38,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.loadCurrentUser();
-    this.quizHistory.loadHistory();
   }
 
   onSelectQuiz(quizId: string): void {

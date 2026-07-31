@@ -5,7 +5,12 @@
       ← В меню
     </button>
   </div>
-
+  <input
+    class="search"
+    type="text"
+    placeholder="Поиск..."
+    (input)="onSearch($any($event.target).value)"
+  />
   @if (attempts().length === 0) {
     <p class="empty">Нет пройденных квизов</p>
   } @else {

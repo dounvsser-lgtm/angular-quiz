@@ -1,0 +1,11 @@
+<section class="switch">
+  <p>Смена пользователя</p>
+  <div class="buttons">
+    @for (u of users; track u.id) {
+      <button type="button" (click)="onSwitch(u.id)">
+        {{ u.name }} ({{ u.role }})
+      </button>
+    }
+  </div>
+  <p class="hint">После смены история прогрузится автоматически</p>
+</section>

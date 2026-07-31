@@ -19,10 +19,8 @@
       </button>
     </div>
   } @else if (quiz.screen() === "history") {
-    <app-quiz-history
-      [attempts]="quizHistory.history() ?? []"
-      (backToMenu)="quiz.backToMenu()"
-    />
+    <app-user-switch />
+    <app-quiz-history (backToMenu)="quiz.backToMenu()" />
   } @else if (quiz.screen() === "quiz") {
     @if (quiz.activeQuiz(); as active) {
       <p class="quiz-title">{{ active.title }}</p>
